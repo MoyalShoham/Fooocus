@@ -1,2 +1,8 @@
 torch==2.1.0
 torchvision==0.16.0
+# To ensure CPU-only install, do not specify any CUDA or ROCM extras (no +cu* or +rocm*). Pip will fetch the CPU wheel by default.
+# If you want to be explicit, you can use:
+# torch==2.1.0+cpu
+# torchvision==0.16.0+cpu
+# and add the following index-url:
+# --extra-index-url https://download.pytorch.org/whl/cpu

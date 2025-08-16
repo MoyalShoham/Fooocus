@@ -5,3 +5,9 @@ dependencies:
   - python=3.10
   - pip=23.0
   - packaging
+
+# To install CPU-only PyTorch, add the following to pip section:
+#   - pip:
+#       - torch==2.1.0+cpu
+#       - torchvision==0.16.0+cpu
+#   - extra-index-url=https://download.pytorch.org/whl/cpu

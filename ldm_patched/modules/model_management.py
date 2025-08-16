@@ -74,20 +74,23 @@ def is_intel_xpu():
     return False
 
 def get_torch_device():
-    global directml_enabled
-    global cpu_state
-    if directml_enabled:
-        global directml_device
-        return directml_device
-    if cpu_state == CPUState.MPS:
-        return torch.device("mps")
-    if cpu_state == CPUState.CPU:
-        return torch.device("cpu")
-    else:
-        if is_intel_xpu():
-            return torch.device("xpu")
-        else:
-            return torch.device(torch.cuda.current_device())
+    # Force all torch device selection to CPU for CPU-only mode
+    return torch.device("cpu")
+    # If you want to restore original logic, comment the line above and uncomment below
+    # global directml_enabled
+    # global cpu_state
+    # if directml_enabled:
+    #     global directml_device
+    #     return directml_device
+    # if cpu_state == CPUState.MPS:
+    #     return torch.device("mps")
+    # if cpu_state == CPUState.CPU:
+    #     return torch.device("cpu")
+    # else:
+    #     if is_intel_xpu():
+    #         return torch.device("xpu")
+    #     else:
+    #         return torch.device(torch.cuda.current_device())
 
 def get_total_memory(dev=None, torch_total_too=False):
     global directml_enabled
